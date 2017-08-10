@@ -1,4 +1,13 @@
 ---
 - hosts: localhost
+  gather_facts: false
+  vars_prompt:
+    - name: "vmware_vcenter_username"
+      prompt: "Enter your vCenter username"
+      private: no
+
+    - name: "vmware_vcenter_password"
+      prompt: "Enter your vCenter password"
+      private: yes
   roles:
     - role: stone-payments.ansible-vmware
