@@ -1,0 +1,4 @@
+---
+- hosts: localhost
+  roles:
+    - role: stone-payments.ansible-vmware
