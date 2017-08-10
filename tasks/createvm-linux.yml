@@ -1,0 +1,74 @@
+---
+- name: creating a VM Linux at vSphere vCenter in No-Production
+  vmware_guest:
+    hostname: "{{ vmware_vcenter_host }}"
+    username: "{{ vmware_vcenter_username }}"
+    password: "{{ vmware_vcenter_password }}"
+    datacenter: "{{ vmware_vcenter_datacenter }}"
+    cluster: "{{ vmware_vcenter_cluster }}"
+    annotation: "{{ item.note }}"
+    name: "{{ item.name }}"
+    guest_id: "{{ vmware_so_guest }}"
+    folder: "{{ vmware_vm_folder }}"
+    state: poweredon
+    disk:
+    - size_gb: "{{ vmware_disk_size }}"
+      type: thin
+      datastore: "{{ vmware_datastore_name }}"
+    hardware:
+      memory_mb: "{{ vmware_memory_size }}"
+      num_cpus: "{{ vmware_vcpus }}"
+    networks:
+      - name: "{{ vmware_network_name }}"
+        ip: "{{ item.ip_mgmt }}"
+        netmask: "{{ vmware_network_netmask }}"
+        gateway: "{{ vmware_network_gateway }}" 
+        device_type: "vmxnet3"
+    template: "{{ vmware_template_base }}"
+    validate_certs: no
+    wait_for_ip_address: yes
+  with_items: "{{ vmware_hosts }}"
+  register: host_created
+  when: vmware_vcenter_environment == "noproduciton"
+
+- name: creating a VM Linux at vSphere vCenter in Production
+  vmware_guest:
+    hostname: "{{ vmware_vcenter_host }}"
+    username: "{{ vmware_vcenter_username }}"
+    password: "{{ vmware_vcenter_password }}"
+    datacenter: "{{ vmware_vcenter_datacenter }}"
+    cluster: "{{ vmware_vcenter_cluster }}"
+    annotation: "{{ item.note }}"
+    name: "{{ item.name }}"
+    guest_id: "{{ vmware_so_guest }}"
+    folder: "{{ vmware_vm_folder }}"
+    state: poweredon
+    disk:
+    - size_gb: "{{ vmware_disk_size1 }}"
+      type: thin
+      datastore: "{{ vmware_datastore_name1 }}"
+    - size_gb: "{{ vmware_disk_size2 }}"
+      type: thin
+      datastore: "{{ vmware_datastore_name2 }}"
+    hardware:
+      memory_mb: "{{ vmware_memory_size }}"
+      num_cpus: "{{ vmware_vcpus }}"
+    networks:
+      - name: "{{ vmware_network_mgmt }}"
+        ip: "{{ item.ip_mgmt }}"
+        netmask: "{{ vmware_network_netmask_mgmt }}"
+        device_type: "vmxnet3"
+      - name: "{{ vmware_network_prod }}"
+        ip: "{{ item.ip_prod }}"
+        netmask: "{{ vmware_network_netmask_prod }}"
+        gateway: "{{ vmware_network_gateway_prod }}" 
+        device_type: "vmxnet3"
+    template: "{{ vmware_template_base }}"
+    validate_certs: no
+    wait_for_ip_address: yes
+  with_items: "{{ vmware_hosts }}"
+  register: host_created
+  when: vmware_vcenter_environment == "production"
+
+- name: add hosts
+  include: add-hosts.yml
