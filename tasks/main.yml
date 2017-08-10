@@ -1,0 +1,8 @@
+---
+- name: creates linux VM
+  include: createvm-linux.yml
+  when: not vmware_so_guest | search("windows")
+
+- name: creates windows VM
+  include: createvm-windows.yml
+  when: vmware_so_guest | search("windows")
