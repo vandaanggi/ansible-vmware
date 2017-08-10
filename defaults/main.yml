@@ -1,0 +1,57 @@
+# ------------------------------------------------------------------------------
+# Set the settings of Server vCenter according environment
+# ------------------------------------------------------------------------------
+vmware_vcenter_environment:
+vmware_vcenter_host:
+vmware_vcenter_datacenter:
+vmware_vcenter_cluster:
+
+# ------------------------------------------------------------------------------
+# Set the hosts configurations
+# ------------------------------------------------------------------------------
+vmware_hosts:
+  - { name: "VMNAME-01", 
+      ip_mgmt: "0.0.0.0",
+      note: "Annotation" }
+
+# ------------------------------------------------------------------------------
+# Set the VM configurations
+# ------------------------------------------------------------------------------
+vmware_vcpus:
+vmware_memory_size:
+
+# Guest SO Options:
+#   rhel: rhel7_64Guest
+#   windows2012: windows7Server64Guest
+vmware_so_guest:
+vmware_template_base:
+
+# ------------------------------------------------------------------------------
+# Set the network settings
+# ------------------------------------------------------------------------------
+vmware_network_name:
+vmware_network_netmask:
+vmware_network_gateway:
+vmware_dns_servers:
+
+# ------------------------------------------------------------------------------
+# Set the datastore settings and destination folder
+# ------------------------------------------------------------------------------
+vmware_datastore_name:
+vmware_disk_size:
+vmware_vm_folder:
+
+# ------------------------------------------------------------------------------
+# Set this variable to rename a VM
+# ------------------------------------------------------------------------------
+vmware_new_vm_name:
+  - list_of_name
+
+# ------------------------------------------------------------------------------
+# Set this configurations to VM Windows
+# ------------------------------------------------------------------------------
+vmware_costumizations_windows_autologon:
+
+# ------------------------------------------------------------------------------
+# For custom variables
+# ------------------------------------------------------------------------------
