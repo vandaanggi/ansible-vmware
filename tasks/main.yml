@@ -1,3 +1,3 @@
 ---
 - name: creates a VM
-  include: getting_facts.yml
+  include: deletevm.yml

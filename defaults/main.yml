@@ -18,7 +18,7 @@ vmware_vcenter_cluster: "Developments"
 #   windows:
 # ------------------------------------------------------------------------------
 vmware_hosts:
-  - name: "Foreman"
+  - name: VMNAME01
     note: Annotation Example
     vcpus: 2
     memory_size: 2048
@@ -35,8 +35,9 @@ vmware_hosts:
         gateway: 10.152.20.1
         device_type: "vmxnet3"
     template_base: "Template_rhel-7.3_x64-PACKER-base-v1.2"
-    vm_folder: "/Dev/EvolucaoInfraLabs"
+    vm_folder: "Dev/EvolucaoInfraLabs"
     state: present
+    mgmt_state:
 
 # ------------------------------------------------------------------------------
 # Set this variable to rename a VM

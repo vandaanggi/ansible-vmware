@@ -9,7 +9,7 @@
     annotation: "{{ item.note }}"
     name: "{{ item.name }}"
     guest_id: "{{ item.so_guest }}"
-    folder: "{{ item.vm_folder }}"
+    folder: "/{{ vmware_vcenter_datacenter }}/vm/{{ item.vm_folder }}"
     state: poweredon
     disk: "{{ item.disks_list }}"
     hardware:

@@ -6,8 +6,7 @@
     password: "{{ vmware_vcenter_password }}"
     datacenter: "{{ vmware_vcenter_datacenter }}"
     name: "{{ item.name }}"
-    name_match: last
-    folder: "{{ item.vm_folder }}"
+    folder: "/{{ vmware_vcenter_datacenter }}/vm/{{ item.vm_folder }}"
     validate_certs: false
   with_items: "{{ vmware_hosts }}"
   register: vm_facts

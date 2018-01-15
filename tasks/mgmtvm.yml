@@ -1,13 +1,13 @@
 ---
 - include: getting_facts.yml
 
-- name: '{{ vmware_mgmt_state|upper}} the VM'
+- name: '{{ item.item.mgmt_state|upper}} the VM'
   vmware_guest:
     hostname: "{{ vmware_vcenter_host }}"
     username: "{{ vmware_vcenter_username }}"
     password: "{{ vmware_vcenter_password }}"
     name: "{{ item.instance.hw_name  }}"
     uuid: "{{ item.instance.hw_product_uuid  }}"
-    state: "{{ vmware_mgmt_state }}"
+    state: "{{ item.item.mgmt_state }}"
     validate_certs: false
   with_flattened: "{{ vm_facts.results }}"
