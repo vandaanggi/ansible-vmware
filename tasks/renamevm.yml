@@ -1,5 +1,5 @@
 ---
-- include: getting-facts.yml
+- include: getting_facts.yml
 
 - name: rename a Virtual Machine
   vmware_guest:
@@ -9,7 +9,7 @@
     name: "{{ item.1 }}"
     uuid: "{{ item.0.instance.hw_product_uuid  }}"
     state: present
-    validate_certs: no
-  with_together: 
+    validate_certs: false
+  with_together:
     - "{{ vm_facts.results }}"
     - "{{ vmware_new_vm_name }}"

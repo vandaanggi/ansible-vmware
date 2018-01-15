@@ -1,5 +1,5 @@
 ---
-- include: getting-facts.yml
+- include: getting_facts.yml
 
 - name: '{{ vmware_mgmt_state|upper}} the VM'
   vmware_guest:
@@ -9,5 +9,5 @@
     name: "{{ item.instance.hw_name  }}"
     uuid: "{{ item.instance.hw_product_uuid  }}"
     state: "{{ vmware_mgmt_state }}"
-    validate_certs: no
+    validate_certs: false
   with_flattened: "{{ vm_facts.results }}"

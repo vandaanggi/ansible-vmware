@@ -1,54 +1,42 @@
+---
 # ------------------------------------------------------------------------------
 # Set the settings of Server vCenter according environment
 # ------------------------------------------------------------------------------
-vmware_vcenter_environment:
-vmware_vcenter_host:
-vmware_vcenter_datacenter:
-vmware_vcenter_cluster:
+vmware_vcenter_host: "10.152.35.35"
+vmware_vcenter_datacenter: "WindStream - environments"
+vmware_vcenter_cluster: "Developments"
 
 # ------------------------------------------------------------------------------
 # Set the hosts configurations
-# ------------------------------------------------------------------------------
-vmware_hosts:
-  - { name: "VMNAME-01", 
-      ip_mgmt: "0.0.0.0",
-      note: "Annotation" }
-
-# ------------------------------------------------------------------------------
-# Set the VM configurations
-# ------------------------------------------------------------------------------
-vmware_vcpus:
-vmware_memory_size:
-
+#
 # Guest SO Options:
 #   rhel: rhel7_64Guest
 #   windows2012: windows7Server64Guest
-vmware_so_guest:
-vmware_template_base:
-
-# ------------------------------------------------------------------------------
-# Set the network settings
-# ------------------------------------------------------------------------------
-vmware_network_name:
-vmware_network_netmask:
-vmware_network_gateway:
-vmware_dns_servers:
-
-# ------------------------------------------------------------------------------
-# Set the datastore settings and destination folder
-# ------------------------------------------------------------------------------
-vmware_datastore_name:
-vmware_disk_size:
-vmware_disk_list: null
-# ------------------------------------------------------------------------------
-# Example disk list
-# ------------------------------------------------------------------------------
 #
-# vmware_disk_list:
-#   - size_gb: "{{ vmware_disk_size }}"
-#     type: thin
-#     datastore: "{{ vmware_datastore_name }}"
-vmware_vm_folder:
+# Templates:
+#   rhel: Template_rhel-7.3_x64-PACKER-base-{VERSION}
+#   windows:
+# ------------------------------------------------------------------------------
+vmware_hosts:
+  - name: "Foreman"
+    note: Annotation Example
+    vcpus: 2
+    memory_size: 2048
+    so_guest: "rhel7_64Guest"
+    disks_list:
+      - size_gb: 12
+        datastore: "Developments-01"
+      - size_gb: 12
+        datastore: "Developments-01"
+    networks:
+      - name: DEV
+        ip: 10.152.20.224
+        netmask: 255.255.255.0
+        gateway: 10.152.20.1
+        device_type: "vmxnet3"
+    template_base: "Template_rhel-7.3_x64-PACKER-base-v1.2"
+    vm_folder: "/Dev/EvolucaoInfraLabs"
+    state: present
 
 # ------------------------------------------------------------------------------
 # Set this variable to rename a VM

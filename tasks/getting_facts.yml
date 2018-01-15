@@ -1,3 +1,4 @@
+---
 - name: getting facts the Virtual Machine
   vmware_guest_facts:
     hostname: "{{ vmware_vcenter_host }}"
@@ -5,7 +6,8 @@
     password: "{{ vmware_vcenter_password }}"
     datacenter: "{{ vmware_vcenter_datacenter }}"
     name: "{{ item.name }}"
-    folder: "{{ vmware_vm_folder }}"
-    validate_certs: no
+    name_match: last
+    folder: "{{ item.vm_folder }}"
+    validate_certs: false
   with_items: "{{ vmware_hosts }}"
   register: vm_facts

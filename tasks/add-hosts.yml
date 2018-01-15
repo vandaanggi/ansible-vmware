@@ -1,7 +1,0 @@
----
-- name: add hosts
-  add_host:
-    hostname: "{{ item.name }}"
-    group: recently_created
-    ansible_host: "{{ item.ip_mgmt }}"
-  with_items: "{{ vmware_hosts }}"
