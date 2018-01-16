@@ -1,7 +1,7 @@
 ---
 - include: getting_facts.yml
 
-- name: '{{ item.item.mgmt_state|upper}} the VM'
+- name: modifies state the VM
   vmware_guest:
     hostname: "{{ vmware_vcenter_host }}"
     username: "{{ vmware_vcenter_username }}"
@@ -11,3 +11,6 @@
     state: "{{ item.item.mgmt_state }}"
     validate_certs: false
   with_flattened: "{{ vm_facts.results }}"
+  when:
+    - item.item.mgmt_state is not none
+    - item.item.mgmt_state != ""
