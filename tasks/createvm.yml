@@ -35,7 +35,7 @@
     annotation: "{{ item.note }}"
     name: "{{ item.name }}"
     guest_id: "{{ item.so_guest }}"
-    folder: "{{ vmware_vm_folder }}"
+    folder: "/{{ vmware_vcenter_datacenter }}/vm/{{ item.vm_folder }}"
     state: poweredon
     disk: "{{ item.disks_list }}"
     hardware:
@@ -55,4 +55,4 @@
     - item.so_guest | search("windows")
 
 - name: add hosts at ansible inventory
-  include: add_hosts.yml
+  include_tasks: add_hosts.yml

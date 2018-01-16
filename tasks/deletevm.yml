@@ -1,5 +1,5 @@
 ---
-- include: getting_facts.yml
+- include_tasks: getting_facts.yml
 
 - name: shutdown the VM
   vmware_guest:
