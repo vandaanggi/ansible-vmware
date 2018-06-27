@@ -56,7 +56,7 @@ vmware_new_vm_name:
   - list_of_name
 
 # ------------------------------------------------------------------------------
-# Set this configurations to VM Windows
+# Set this configurations to Windows VM
 # ------------------------------------------------------------------------------
 vmware_costumizations_windows_autologon:
 
