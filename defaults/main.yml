@@ -1,6 +1,6 @@
 ---
 # ------------------------------------------------------------------------------
-# Set the settings of Server vCenter according environment
+# Set the settings of vCenter Server according environment
 # ------------------------------------------------------------------------------
 vmware_vcenter_host: ""
 vmware_vcenter_datacenter: ""
