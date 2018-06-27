@@ -1,6 +1,6 @@
-# Stone Payments - Ansible VMWare
+# Stone Payments - Ansible VMware
 
-This repository contains a role for create, delete or to manage a Virtual Machine (VM) using VMWare vSphere vCenter
+This repository contains a role for create, delete or to manage a Virtual Machine (VM) using VMware vSphere vCenter
 
 ## Prerequisites
 * [PyVmoni](https://pypi.python.org/pypi/pyvmomi/) is the Python SDK for the VMware vSphere API that allows you to manage ESX, ESXi, and vCenter.
