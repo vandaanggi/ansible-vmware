@@ -1,7 +1,7 @@
 ---
 - include_tasks: getting_facts.yml
 
-- name: modifies state the VM
+- name: modifies VM state
   vmware_guest:
     hostname: "{{ vmware_vcenter_host }}"
     username: "{{ vmware_vcenter_username }}"
