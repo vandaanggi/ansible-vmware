@@ -1,5 +1,5 @@
 ---
-- name: getting facts the Virtual Machine
+- name: getting facts about the Virtual Machine
   vmware_guest_facts:
     hostname: "{{ vmware_vcenter_host }}"
     username: "{{ vmware_vcenter_username }}"
