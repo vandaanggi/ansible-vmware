@@ -19,6 +19,7 @@
     template: "{{ item.template_base }}"
     validate_certs: false
     wait_for_ip_address: true
+    customization: "{{ item.customization }}"
   with_items: "{{ vmware_hosts }}"
   register: host_created
   when:
@@ -45,9 +46,7 @@
     template: "{{ item.template_base }}"
     validate_certs: false
     wait_for_ip_address: true
-    customization:
-      autologon: "{{ vmware_costumizations_windows_autologon }}"
-      password: "{{ vmware_costumizations_windows_template_password }}"
+    customization: "{{ item.customization }}"
   with_items: "{{ vmware_hosts }}"
   register: host_created
   when:
