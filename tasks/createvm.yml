@@ -19,7 +19,6 @@
     template: "{{ item.template_base }}"
     validate_certs: false
     wait_for_ip_address: true
-    customization: "{{ item.customization }}"
   with_items: "{{ vmware_hosts }}"
   register: host_created
   when:
@@ -52,6 +51,13 @@
   when:
     - item.state == "present"
     - item.so_guest | search("windows")
+
+- name: Wait for vmware windows customization
+  wait_for:
+    delay: 10
+  when:
+    - host_created is changed
+    - host_created.instance.hw_guest_id | search("windows")
 
 - name: add hosts at ansible inventory
   include_tasks: add_hosts.yml
