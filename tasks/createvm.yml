@@ -54,8 +54,8 @@
 
 - name: Wait for vmware windows customization
   wait_for:
-    delay: 2
-  with_items: "{{ host_created }}"
+    delay: 5
+  with_items: "{{ host_created.results }}"
   when:
     - item is changed
 
