@@ -41,6 +41,11 @@
     hardware:
       memory_mb: "{{ item.memory_size }}"
       num_cpus: "{{ item.vcpus }}"
+      hotadd_cpu: "{{ item.hotadd_cpu }}"
+      hotremove_cpu: "{{ item.hotremove_cpu }}"
+      hotadd_memory: "{{ item.hotadd_memory }}"
+      mem_reservation: "{{ item.mem_reservation }}"
+      num_cpu_cores_per_socket: "{{ item.num_cpu_cores_per_socket }}"
     networks: "{{ item.networks }}"
     template: "{{ item.template_base }}"
     validate_certs: false
