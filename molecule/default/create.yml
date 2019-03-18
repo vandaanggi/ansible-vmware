@@ -1,7 +1,26 @@
 ---
-- name: Create instance
-  hosts: localhost
-  connection: local
-  gather_facts: false
-  tasks:
-    - debug: msg="*** It's not necessary, becouse this role runs in local mode"
+- name: creating a VM Linux at vSphere vCenter
+  vmware_guest:
+    hostname: "{{ vmware_vcenter_host }}"
+    username: "{{ vmware_vcenter_username }}"
+    password: "{{ vmware_vcenter_password }}"
+    datacenter: "{{ vmware_vcenter_datacenter }}"
+    cluster: "{{ vmware_vcenter_cluster }}"
+    annotation: "{{ item.note }}"
+    name: "{{ item.name }}"
+    guest_id: "{{ item.so_guest }}"
+    folder: "{{ item.vm_folder }}"
+    state: poweredon
+    disk: "{{ item.disks_list }}"
+    hardware:
+      memory_mb: "{{ item.memory_size }}"
+      num_cpus: "{{ item.vcpus }}"
+    networks: "{{ item.networks }}"
+    template: "{{ item.template_base }}"
+    validate_certs: false
+    wait_for_ip_address: true
+  with_items: "{{ vmware_hosts }}"
+  register: host_created
+  when:
+    - item.state == "present"
+    - not item.so_guest | search("windows")
